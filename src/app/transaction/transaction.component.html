@@ -1,10 +1,4 @@
-<!-- <div *ngFor="let trans of transaction;let i = index">
-    <p>{{trans.transfertypecode}}</p>
-    <p>{{ trans.transfertypedescription}}</p>
-</div> -->
-<!-- <h1>{{outputstring}}</h1> -->
 
-<!-- <h1>{{transactions}}</h1> -->
 <div class="container-fluid">
     <table class="table table-hover mt-5">
         <thead>
@@ -16,7 +10,7 @@
             <th>Transaction Date</th>
         </thead>
         <tbody>
-            <tr *ngFor="let p of transactiontable ;let i=index;">
+            <tr class="table-info" *ngFor="let p of transactiontable ;let i=index;">
                 <td>{{i+1}}</td>
                 <td>{{p.receiveraccounholdername}}</td>
                 <td>{{p.receiveraccounholdernumber}}</td>

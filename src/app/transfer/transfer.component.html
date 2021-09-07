@@ -1,6 +1,13 @@
 <form [formGroup]=" transferForm" >
 
+
     <div class=" col-md-4 offset-md-3 ">
+        <div #alert class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="alert">
+            <button type="button" class="close" aria-label="Close" (click)="onClose()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Transaction completed</strong> 
+          </div>
         <div class="form-group mb-2">
             <label for="customerid" class="form-label mt-4">Customer Id</label>
 
@@ -153,9 +160,12 @@
     </div>
     <div class="col-md-3 offset-md-4">
         <div class="form-group mt-5">
+            
             <button type="button" (click)="handletransfer()" class="btn btn-primary" [disabled]="!transferForm.valid"> Transfer</button>
+            
+
         </div>
     </div>
-
+    
 
 </form>

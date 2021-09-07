@@ -9,6 +9,7 @@ import { RequestService } from '../Services/Request.service';
   styleUrls: ['./transfer.component.css']
 })
 export class TransferComponent implements OnInit {
+  alert=false;
   transferForm:FormGroup;
   transfertype:Array<any>;
   messagecodes:Array<any>;
@@ -27,7 +28,7 @@ export class TransferComponent implements OnInit {
     currency: new FormControl('INR',[Validators.required]),
 
     bic:new FormControl('',[Validators.required]),
-    institutionname: new FormControl('',[Validators.required]),
+    institutionname: new FormControl('NA',[Validators.required]),
     raccountholdername: new FormControl('',[Validators.required]),
     raccountnumber: new FormControl('',[Validators.required]),
     transfertypes: new FormControl('',[Validators.required]),
@@ -57,6 +58,9 @@ export class TransferComponent implements OnInit {
   handletransfer(){
     console.log(this.transferForm.errors)
     console.log(this.transferForm.controls['amount'].errors)
+    this.alert=true
+    window.scrollTo(0,0);
+    this.transferForm.reset();
 
   }
   get accountholdername(){
@@ -101,6 +105,8 @@ export class TransferComponent implements OnInit {
     return this.transferForm.controls['customerid'];
   }
 
-;
+onClose(){
+  this.alert=false;
+}
 
 }
