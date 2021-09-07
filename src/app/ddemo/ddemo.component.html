@@ -1,0 +1,12 @@
+<p>ddemo works!</p>
+
+<form [formGroup]="demoForm" novalidate>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" formControlName="balance">
+            <div class="field-message" *ngIf="!balance.errors?.minbal">
+                Your password must have lower case, upper case and numeric characters.
+            </div>
+        </div>
+    </div>
+</form>

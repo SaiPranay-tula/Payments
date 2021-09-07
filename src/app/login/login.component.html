@@ -1,0 +1,101 @@
+<form [formGroup]="loginForm">
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+
+                                <div class="form-group">
+                                    <div class="form-outline form-white mb-7">
+                                        <label class="form-label" >UserName</label>
+                                        <input type="text" id="username" class="form-control form-control-lg"
+                                            formControlName="username" placeholder="Enter Username" />
+                                            
+                                                <div *ngIf="!username?.valid && (username?.dirty || username?.touched)" class="text-danger mt-2">
+                                                    <div *ngIf="username.errors?.required">Username is required</div>
+                                             </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-outline form-white mb-4">
+                                        <label class="form-label" for="typePasswordX">Password</label>
+                                        <input type="password" id="password" class="form-control form-control-lg"
+                                            formControlName="password" placeholder="Enter password" />
+                                        <div *ngIf="!password?.valid && (password?.dirty || password?.touched) " class="text-danger mt-2">
+                                            <div *ngIf="password.errors?.required">Password is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit"
+                                        (click)="onSubmit()" [disabled]="!loginForm.valid">Login</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+
+<!-- <form >
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="username" class="form-label mt-4">Username</label>
+            <input type="text"
+             class="form-control" 
+             id="username" 
+             name="username" 
+             placeholder="Enter Username" 
+             formControlName="email"
+             autocomplete="off"  -->
+<!-- /> -->
+<!-- <div *ngIf="!username?.valid && username?.dirty " class="text-danger mt-2">
+                <div *ngIf="username.errors?.maxlength">Username cannot be more than 10 characters</div>
+               <div *ngIf="username.errors?.minlength">Minimum characters for username is 6</div>
+               <div *ngIf="username.errors?.required">Username is required</div>
+               <div *ngIf="username.errors?.pattern">Username should be alphanumeric only</div>
+             </div> -->
+<!-- <div class="form-group has-success">
+                <label class="form-label mt-4" for="inputValid" >Username</label>
+                <input type="text" value="correct value" class="form-control is-valid" id="inputValid">
+                <div class="valid-feedback" fgid="2857">Success!</div>
+              </div>
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="username" class="form-label mt-4">Password</label>
+            <input type="password"
+             class="form-control" 
+             id="password" 
+             name="password" 
+             placeholder="Enter Password" 
+             formControlName="password"
+             autocomplete="off" 
+             /> -->
+<!-- <div *ngIf="!password?.valid && password?.dirty " class="text-danger mt-2">
+                <div *ngIf="password.errors?.maxlength">Password cannot be more than 10 characters</div>
+               <div *ngIf="password.errors?.minlength">Password should be miniumum of  6 characters</div>
+               <div *ngIf="password.errors?.required">Password is required</div>
+               <div *ngIf="password.errors?.pattern">Password should be alphanumberic with atleast one special character</div>
+             </div> -->
+<!-- </div>
+    </div>
+   
+
+    <div class="col-md-4 offset-md-3 mt-3">
+        <button class="btn btn-primary" type="submit"
+       
+       
+        >Login</button>
+    </div>
+</form> -->

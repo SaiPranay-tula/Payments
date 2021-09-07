@@ -1,0 +1,161 @@
+<form [formGroup]=" transferForm" >
+
+    <div class=" col-md-4 offset-md-3 ">
+        <div class="form-group mb-2">
+            <label for="customerid" class="form-label mt-4">Customer Id</label>
+
+            <input type="text" class="form-control" id="customerid" name="customerid" formControlName="customerid" />
+            <div *ngIf="!customerid?.valid && (customerid?.dirty || customerid?.touched)" class="text-danger mt-2">
+                <div *ngIf="customerid.errors?.required">customerid is required</div>
+         </div>
+
+  
+        </div>
+    </div>
+    <div class=" col-md-4 offset-md-3 ">
+        <div class="form-group mb-2">
+            <label for="accountholdername" class="form-label mt-4">AccountHolder Name</label>
+            <input type="text" class="form-control" id="accountholdername" name="accountholdername"
+                formControlName="accountholdername" />
+                <div *ngIf="!accountholdername?.valid && (accountholdername?.dirty || accountholdername?.touched)" class="text-danger mt-2">
+                    <div *ngIf="accountholdername.errors?.required">accountholdername is required</div>
+             </div>
+
+        </div>
+                
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group mb-2">
+            <label for="clearbalance" class="form-label mt-4">Clear Balance</label>
+            <!-- <input type="text" class="form-control" id="clearbalance" name="clearbalance"
+                formControlName="clearbalance" /> -->
+            <input type="text" class="form-control-plaintext" id="clearbalance" name="clearbalance" value={{balance}}
+                readonly formControlName="clearbalance"/>
+                <div *ngIf="!clearbalance?.valid && (clearbalance?.dirty || clearbalance?.touched)" class="text-danger mt-2">
+                    <div *ngIf="clearbalance.errors?.required">clearbalance is required</div>
+             </div>
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="currency" class="form-label mt-4">Currency</label>
+            <input type="text" class="form-control-plaintext" id="transferfee" name="transferfee" value="INR"
+                readonly formControlName="currency"/>
+            <!-- <input type="text" class="form-control" id="currency" name="currency" formControlName="currency"  readonly/> -->
+            <div *ngIf="!currency?.valid && (currency?.dirty || currency?.touched)" class="text-danger mt-2">
+                <div *ngIf="currency.errors?.required">currency is required</div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="bic" class="form-label mt-4">BIC</label>
+            <input type="text" class="form-control" id="bic" name="bic" formControlName="bic" />
+            <div *ngIf="!bic?.valid && (bic?.dirty || bic?.touched)" class="text-danger mt-2">
+                <div *ngIf="bic.errors?.required">bic is required</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="institutionname" class="form-label mt-4">Institution Name</label>
+            <input type="text" class="form-control-plaintext" id="institutionname" name="institutionname"
+                formControlName="institutionname" readonly/>
+                <div *ngIf="!institutionname?.valid && (institutionname?.dirty || institutionname?.touched)" class="text-danger mt-2">
+                    <div *ngIf="institutionname.errors?.required">institutionname is required</div>
+                </div>
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="raccountoholdername" class="form-label mt-4">Receiver AccountHolder Name</label>
+            <input type="text" class="form-control" id="raccountholdername" name="raccountholdername"
+                formControlName="raccountholdername" />
+                <div *ngIf="!raccountholdername?.valid && (raccountholdername?.dirty || raccountholdername?.touched)" class="text-danger mt-2">
+                    <div *ngIf="raccountholdername.errors?.required">raccountholdername is required</div>
+                </div>
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="raccountnumber" class="form-label mt-4">Receiver AccountHolder Number</label>
+            <input type="text" class="form-control" id="raccountnumber" name="raccountnumber"
+                formControlName="raccountnumber" />
+                <div *ngIf="!raccountnumber?.valid && (raccountnumber?.dirty || raccountnumber?.touched)" class="text-danger mt-2">
+                    <div *ngIf="raccountnumber.errors?.required">raccountnumber is required</div>
+                </div>    
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="TransferTypes" class="form-label mt-4">TransferType</label>
+
+            <select id="transfertype" name="transfertype" class="form-select" formControlName="transfertypes">
+                <option value="A">TransferType</option>
+                <option *ngFor="let c of transfertype" [ngValue]="c.transfertypecode">
+                    {{c.transfertypecode}}
+                </option>
+            </select>
+            <div *ngIf="!transfertypes?.valid && (transfertypes?.dirty || transfertypes?.touched)" class="text-danger mt-2">
+                <div *ngIf="transfertypes.errors?.required">transfertypes is required</div>
+            </div> 
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="messagecode" class="form-label mt-4">Messagecode</label>
+
+            <select id="messagecode" name="messagecode" class="form-select" formControlName="messagecode">
+                <option value="" disabled>ChooseMessagecode</option>
+                <option *ngFor="let c of messagecodes" [ngValue]="c.message">
+                    {{c.messagecode}}
+                </option>
+            </select>
+            <div *ngIf="!messagecode?.valid && (messagecode?.dirty || messagecode?.touched)" class="text-danger mt-2">
+                <div *ngIf="messagecode.errors?.required">messagecode is required</div>
+            </div> 
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="amount" class="form-label mt-4">Amount</label>
+            <input type="text" class="form-control" id="amount" name="amount" formControlName="amount" />
+
+            <!-- <div *ngIf="amount.errors && (amount.dirty || amount.touched)" class="text-danger mt-2">
+                <div>Minimum age should be 18</div>
+               
+             </div> -->
+            <div *ngIf="!amount.errors?.miniumum && (amount?.dirty || amount?.touched)" class="text-danger mt-2">
+                <div *ngIf="amount.errors?.required">Amount is required</div>
+                <!-- <div *ngIf="num2.errors?.max" -->
+                <div *ngIf="amount.errors?.max">Amount is shld be less</div>
+                
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="amount" class="form-label mt-4">Transfer Fee</label>
+            <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="0.25%" formControlName="transferfee"> -->
+            <input type="text" class="form-control-plaintext" id="transferfee" name="transferfee" value="0.25"
+                readonly />
+
+        </div>
+    </div>
+    <div class="col-md-3 offset-md-4">
+        <div class="form-group mt-5">
+            <button type="button" (click)="handletransfer()" class="btn btn-primary" [disabled]="!transferForm.valid"> Transfer</button>
+        </div>
+    </div>
+
+
+</form>
