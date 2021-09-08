@@ -12,6 +12,9 @@
 
                                 <div class="form-group">
                                     <div class="form-outline form-white mb-7">
+                                        <div *ngIf="login">
+                                            <p style="color: red;">Inavlid Username/Password</p>
+                                        </div>
                                         <label class="form-label" >UserName</label>
                                         <input type="text" id="username" class="form-control form-control-lg"
                                             formControlName="username" placeholder="Enter Username" />

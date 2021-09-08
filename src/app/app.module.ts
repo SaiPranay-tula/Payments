@@ -14,6 +14,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { DdemoComponent } from './ddemo/ddemo.component';
+import { ProfileComponent } from './profile/profile.component';
+import { TransactionService } from './Services/Trans.Service';
+import { ApiService } from './Services/api.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { DdemoComponent } from './ddemo/ddemo.component';
     DashboardComponent,
     LogoutComponent,
     TransferComponent,
-    DdemoComponent
+    DdemoComponent,
+    ProfileComponent
   
   ],
   imports: [
@@ -51,13 +55,18 @@ import { DdemoComponent } from './ddemo/ddemo.component';
         path:"",component:LoginComponent
       },{
         path:"demo",component:DdemoComponent
+      },
+      {
+        path:"profile",component:ProfileComponent
       }
 
     ])
   
    
   ],
-  providers: [RequestService],
+  providers: [RequestService,
+    TransactionService,
+    ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

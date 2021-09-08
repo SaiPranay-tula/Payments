@@ -1,15 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RequestService } from '../Services/Request.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
-  constructor() { }
+  
+  status=false;
+  tabs:any
 
-  ngOnInit(): void {
-  }
+  constructor(public rservice:RequestService) { 
+    this.tabs= [
+    {
+      text: "Home",
+      link: "dashboard"
+    },
+    {
+      text: "Profile",
+      link: "profile"
+
+    },
+    {
+      text: "Transfer",
+      link: "transfer"
+
+    },
+    {
+      text: "Transactions",
+      link: "transaction"
+
+    }
+  ]
+}
 
 }

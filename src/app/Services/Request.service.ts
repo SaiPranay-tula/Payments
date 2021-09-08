@@ -1,58 +1,51 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
+import { HeaderComponent } from "../header/header.component";
+import { CustomerModel } from "../models/customer.model";
+
 
 @Injectable()
 export class RequestService{
+    login:any
+    customer:CustomerModel;
     User:any;
     trasnfertypes:any;
     messagecodes:any
 
     constructor(private http:HttpClient){
+        this.customer= new CustomerModel();
          this.User={
-            "customerid": "",
-            "accountholdername": "",
+            "customerid": "3434353",
+            "accountholdername": "Amm",
             "overdraftflag":0 ,
-            "clearbalance": 0,
-            "customeraddress": "",
-            "customercity": "",
-            "customertype": ""
+            "clearbalance": 1110,
+            "customeraddress": "HYD",
+            "customercity": "DSD",
+            "customertype": "I"
         }
 
     }
     
 
     customer_login(obj:any){
+        console.log(this.customer)
         this.User=obj;
-
-        console.log(this.User)
-    }
-
-    getTransfertypes(){
-        let url="http://localhost:8080/transfertypes";
-        this.getApi(url).subscribe((result=>{
-            this.trasnfertypes=result
-        }));
-        return this.trasnfertypes
-    }
-
-    getMessageCodes(){
-        let url="http://localhost:8080/messages";
-        this.getApi(url).subscribe((result=>{
-            this.messagecodes=result
-        }));
-        return this.messagecodes
+        this.customer=obj;
+        console.log(this.customer)
+        this.login=true
+       // this.header.changeStatus(this.login)
 
     }
-    postApi(url:string,payload:any){
-        return this.http.post(url,payload);
-    }
+
+   
+
+
+   
     getApi(url:string){
         return this.http.get(url);
     }
-    getbalance(){
-        return this.User.clearbalance;
-    }
+    
     
 
 

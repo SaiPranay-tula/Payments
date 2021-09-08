@@ -1,31 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../Services/api.service';
+import { RequestService } from '../Services/Request.service';
 
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.css']
 })
-export class TransactionComponent {
+export class TransactionComponent implements OnInit {
   
+  customerid:string
   transtypes: any;
   CustomerUser:any;
   outputstring:any;
   transactions:any;
   transactiontable:any;
  
-  constructor( http:HttpClient) {
+  constructor(private apiService:ApiService,private rservice:RequestService) {
 
-    
-
-
-
-
+    this.customerid=rservice.customer.customerid
 
     this.transtypes = [{
       transfertypecode: '',
-      ransfertypedescription: ''
+      transfertypedescription: ''
 
     }]
 
@@ -34,8 +33,9 @@ export class TransactionComponent {
       userPassword:'shalini'
     }
 
-    this.transactions=[{
+    this.transactions={
       "transactionid": "",
+      "customerid":"",
         "currencycode": {
             "currencyname": "",
         },
@@ -47,18 +47,20 @@ export class TransactionComponent {
           "bic":"",
           "bankname":""
         },
+        "receiveraccounholdername": "",
+        "receiveraccounholdernumber": "",
+        "transfertypecode":"",
         "currencyamount":"",
         "transferfees": "",
         "transferdate": "",
         "inramount":"",
         "date": "",
-        "receiveraccounholdername": "",
-        "receiveraccounholdernumber": "",
+        
 
     }
 
 
-  ]
+  
   this.transactiontable=[{
     "receiveraccounholdername": "",
     "receiveraccounholdernumber": "",
@@ -74,12 +76,25 @@ export class TransactionComponent {
     //   this.outputstring=result;
     // })
 
-    http.get("http://localhost:8080/transaction/71319440983198").subscribe(result=>{
-     // console.group(result)
-      this.transactiontable=result;
+   
+    // this.apiService.getTransactions(this.customerid).subscribe(result=>{
+    //  // console.group(result)
+    //   this.transactiontable=result;
       
-    })
-
+    // })
+  }
+  ngOnInit(): void {
+    if(this.rservice.customer.customerid)
+     this.apiService.getTransactionsApi(this.customerid).subscribe(result=>{
+       console.group(result)
+       this.transactiontable=result;
+       
+     })
+    }
+    
+   
   }
 
-}
+  
+
+
