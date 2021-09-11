@@ -2,16 +2,34 @@
 
 
     <div class=" col-md-4 offset-md-3 ">
-        <div #alert class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="alert">
+        <div *ngIf="alert">
+            <div #alert class="alert alert-success" role="alert" *ngIf="success">
+                <button type="button" class="close" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Transaction completed</strong>
+            </div>
+            <div #alert class="alert alert-danger" role="alert" *ngIf="!success">
+                <button type="button" class="close" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Transaction Failed</strong>
+            </div>
+
+
+        </div>
+        <div #alert class="alert alert-dismissible alert-danger fade show" role="alert" *ngIf="invalidaccname">
             <button type="button" class="close" aria-label="Close" (click)="onClose()">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Transaction completed</strong>
+            <strong>Transaction On Hold Try Again Later</strong>
         </div>
+
         <div class="form-group mb-2">
             <label for="customerid" class="form-label mt-4">Customer Id</label>
 
-            <input type="text" class="form-control" id="customerid" name="customerid" formControlName="customerid"  readonly/>
+            <input type="text" class="form-control" id="customerid" name="customerid" formControlName="customerid"
+                readonly />
             <div *ngIf="!customerid?.valid && (customerid?.dirty || customerid?.touched)" class="text-danger mt-2">
                 <div *ngIf="customerid.errors?.required">customerid is required</div>
             </div>
@@ -23,7 +41,7 @@
         <div class="form-group mb-2">
             <label for="accountholdername" class="form-label mt-4">AccountHolder Name</label>
             <input type="text" class="form-control" id="accountholdername" name="accountholdername"
-                formControlName="accountholdername"  readonly />
+                formControlName="accountholdername" readonly />
             <div *ngIf="!accountholdername?.valid && (accountholdername?.dirty || accountholdername?.touched)"
                 class="text-danger mt-2">
                 <div *ngIf="accountholdername.errors?.required">accountholdername is required</div>
@@ -35,8 +53,8 @@
     <div class="col-md-4 offset-md-3">
         <div class="form-group mb-1">
             <label for="clearbalance" class="form-label mt-4">Clear Balance</label>
-            <input type="text" class="form-control" id="clearbalance" name="clearbalance" value=""
-                readonly formControlName="clearbalance" />
+            <input type="text" class="form-control" id="clearbalance" name="clearbalance" value="" readonly
+                formControlName="clearbalance" />
             <div *ngIf="!clearbalance?.valid && (clearbalance?.dirty || clearbalance?.touched)"
                 class="text-danger mt-2">
                 <div *ngIf="clearbalance.errors?.required">clearbalance is required</div>
@@ -70,11 +88,13 @@
     <div class="col-md-4 offset-md-3">
         <div class="form-group">
             <label for="institutionname" class="form-label mt-4">Institution Name</label>
-            <input type="text" class="form-control-plaintext" id="institutionname" name="institutionname"
-                formControlName="institutionname" readonly  value={{getIname()}}/>
-            <div *ngIf="!institutionname?.valid && (institutionname?.dirty || institutionname?.touched)"
+            <input type="text" class="form-control" id="institutionname" name="institutionname"
+                formControlName="institutionname" readonly (mouseover)="getIname()" />
+            <div *ngIf="!institutionname?.valid && (institutionname?.dirty || institutionname?.touched) || bank"
                 class="text-danger mt-2">
                 <div *ngIf="institutionname.errors?.required">institutionname is required</div>
+                <div *ngIf="!bank">Invalid BIC</div>
+
             </div>
 
         </div>
@@ -83,7 +103,7 @@
         <div class="form-group">
             <label for="raccountoholdername" class="form-label mt-4">Receiver AccountHolder Name</label>
             <input type="text" class="form-control" id="raccountholdername" name="raccountholdername"
-                formControlName="raccountholdername" />
+                formControlName="raccountholdername" (mouseout)="Validate_name()" />
             <div *ngIf="!raccountholdername?.valid && (raccountholdername?.dirty || raccountholdername?.touched)"
                 class="text-danger mt-2">
                 <div *ngIf="raccountholdername.errors?.required">raccountholdername is required</div>
@@ -144,28 +164,28 @@
                 <div>Minimum age should be 18</div>
                
              </div> -->
-            <div *ngIf="!amount.errors?.miniumum && (amount?.dirty || amount?.touched)" class="text-danger mt-2">
+            <div *ngIf="!amount.errors?.valid && (amount?.dirty || amount?.touched)" class="text-danger mt-2">
                 <div *ngIf="amount.errors?.required">Amount is required</div>
+                <div *ngIf="amount.errors?.invalid">No Suffecient Balance</div>
                 <!-- <div *ngIf="num2.errors?.max" -->
-                <div *ngIf="amount.errors?.max">Amount is shld be less</div>
-
             </div>
-
         </div>
+
+
     </div>
     <div class="col-md-4 offset-md-3">
         <div class="form-group">
             <label for="amount" class="form-label mt-4">Transfer Fee</label>
             <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="0.25%" formControlName="transferfee"> -->
-            <input type="text" class="form-control" id="transferfee" name="transferfee" value="{{transferForm.controls['amount'].value*0.025}}"
-                readonly />
+            <input type="text" class="form-control" id="transferfee" name="transferfee" (mouseover)="gettfee()" readonly
+                formControlName="transferfee" />
 
         </div>
     </div>
     <div class="col-md-3 offset-md-4">
         <div class="form-group mt-5">
 
-            <button type="button" (click)="handletransfer()" class="btn btn-primary" [disabled]="!transferForm.valid">
+            <button type="button" (click)="handletransfer()" class="btn btn-primary" [disabled]="transferForm.valid">
                 Transfer</button>
 
 

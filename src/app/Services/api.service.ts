@@ -32,8 +32,18 @@ export class ApiService{
     
     }
     getBankname(bic:string){
-        let url="http://localhost:8080/bank/+bic"
+        let url="http://localhost:8080/bank/"+bic
         return this.http.get(url);
+    }
+
+    getvalidRaccname(name:string){
+        let url="http://localhost:8080/transaction/receiver/"+name
+        return this.http.get(url)
+    }
+
+    inserttransaction(payload:any){
+        let url="http://localhost:8080/success/insert"
+        return this.http.post(url,payload)
     }
 
 

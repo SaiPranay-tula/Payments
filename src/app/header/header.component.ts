@@ -9,7 +9,7 @@ import { RequestService } from '../Services/Request.service';
 export class HeaderComponent  {
 
   
-  status=false;
+  status=this.rservice.login
   tabs:any
 
   constructor(public rservice:RequestService) { 
@@ -35,5 +35,6 @@ export class HeaderComponent  {
     }
   ]
 }
+
 
 }

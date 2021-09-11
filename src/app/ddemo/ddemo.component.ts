@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { validateBalance } from '../common/balance.validator';
+import { minvalidator } from '../common/minvalidator';
+import { ValidatorsService } from '../Services/validatiors.service';
 
 @Component({
   selector: 'app-ddemo',
@@ -11,16 +13,18 @@ export class DdemoComponent implements OnInit {
   demoForm:FormGroup;
 
 
-  constructor() {
+  constructor(private customValidators:ValidatorsService) {
     this.demoForm=new FormGroup({
+
       balance: new FormControl(
-        0,[Validators.required,validateBalance(100)]
+        0,[Validators.required,minvalidator(10)]
+      
       )
 
     })
    }
    get balance(){
-     return this.demoForm.controls['balance'].value;
+     return this.demoForm.controls['balance'];
    }
 
   ngOnInit(): void {

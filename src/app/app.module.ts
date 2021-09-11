@@ -17,6 +17,7 @@ import { DdemoComponent } from './ddemo/ddemo.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TransactionService } from './Services/Trans.Service';
 import { ApiService } from './Services/api.service';
+import { ValidatorsService } from './Services/validatiors.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { ApiService } from './Services/api.service';
   ],
   providers: [RequestService,
     TransactionService,
-    ApiService],
+    ApiService,
+    ValidatorsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
