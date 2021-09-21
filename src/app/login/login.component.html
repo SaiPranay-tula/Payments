@@ -21,6 +21,8 @@
                                             
                                                 <div *ngIf="!username?.valid && (username?.dirty || username?.touched)" class="text-danger mt-2">
                                                     <div *ngIf="username.errors?.required">Username is required</div>
+                                                    <div *ngIf="username.errors?.minlength">Username length Constraint</div>
+
                                              </div>
 
                                     </div>
@@ -32,6 +34,7 @@
                                             formControlName="password" placeholder="Enter password" />
                                         <div *ngIf="!password?.valid && (password?.dirty || password?.touched) " class="text-danger mt-2">
                                             <div *ngIf="password.errors?.required">Password is required</div>
+                                            <div *ngIf="password.errors?.minlength">Minimum length is required</div>
                                         </div>
                                     </div>
                                 </div>

@@ -12,4 +12,8 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logOut() {
+    sessionStorage.removeItem('username')
+  }
+
 }

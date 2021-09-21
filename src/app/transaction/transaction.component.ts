@@ -10,7 +10,7 @@ import { RequestService } from '../Services/Request.service';
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
-  
+  resu:any
   customerid:string
   transtypes: any;
   CustomerUser:any;
@@ -84,6 +84,14 @@ export class TransactionComponent implements OnInit {
     // })
   }
   ngOnInit(): void {
+    this.apiService.loginApi(sessionStorage.getItem('username')).subscribe(
+      result=>{
+        this.resu=result;
+        console.log(result)
+        this.rservice.customer_login(this.resu);
+
+      }
+    )
     if(this.rservice.customer.customerid)
      this.apiService.getTransactionsApi(this.customerid).subscribe(result=>{
        console.group(result)

@@ -13,7 +13,7 @@ import { RequestService } from './Services/Request.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TransferComponent } from './transfer/transfer.component';
-import { DdemoComponent } from './ddemo/ddemo.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { TransactionService } from './Services/Trans.Service';
 import { ApiService } from './Services/api.service';
@@ -28,7 +28,6 @@ import { ValidatorsService } from './Services/validatiors.service';
     DashboardComponent,
     LogoutComponent,
     TransferComponent,
-    DdemoComponent,
     ProfileComponent
   
   ],
@@ -54,8 +53,6 @@ import { ValidatorsService } from './Services/validatiors.service';
       },
       {
         path:"",component:LoginComponent
-      },{
-        path:"demo",component:DdemoComponent
       },
       {
         path:"profile",component:ProfileComponent

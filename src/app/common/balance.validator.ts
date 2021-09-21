@@ -2,8 +2,9 @@
 import {AbstractControl, FormControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 
-export function validateBalance(clearbalance:number){
+export function validateBalance(clearbalance:number,overdraft:boolean){
     console.log(clearbalance)
+    console.log(overdraft)
     let amount=0
     
     return(control:AbstractControl):ValidationErrors=>{
@@ -14,7 +15,7 @@ export function validateBalance(clearbalance:number){
         let clear=clearbalance-(amount*0.025)
 
 
-        if(amount>clear){
+        if(amount>clear || overdraft){
             amount=0
             return {'invalid':true}
         }

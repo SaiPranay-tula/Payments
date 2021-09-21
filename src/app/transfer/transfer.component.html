@@ -94,6 +94,7 @@
                 class="text-danger mt-2">
                 <div *ngIf="institutionname.errors?.required">institutionname is required</div>
                 <div *ngIf="!bank">Invalid BIC</div>
+            
 
             </div>
 
@@ -119,6 +120,9 @@
             <div *ngIf="!raccountnumber?.valid && (raccountnumber?.dirty || raccountnumber?.touched)"
                 class="text-danger mt-2">
                 <div *ngIf="raccountnumber.errors?.required">raccountnumber is required</div>
+                <div *ngIf="raccountnumber.errors?.pattern || raccountnumber.errors?.minlength || raccountnumber.errors?.maxlength ">raccountnumber is not valid</div>
+
+
             </div>
 
         </div>
@@ -164,11 +168,16 @@
                 <div>Minimum age should be 18</div>
                
              </div> -->
+       
+
+            
             <div *ngIf="!amount.errors?.valid && (amount?.dirty || amount?.touched)" class="text-danger mt-2">
                 <div *ngIf="amount.errors?.required">Amount is required</div>
+                <div *ngIf="!overdraft">
                 <div *ngIf="amount.errors?.invalid">No Suffecient Balance</div>
                 <!-- <div *ngIf="num2.errors?.max" -->
             </div>
+        </div>
         </div>
 
 

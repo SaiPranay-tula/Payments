@@ -35,6 +35,10 @@ export class HeaderComponent  {
     }
   ]
 }
+Logout(){
+  this.rservice.login=false
+  this.rservice.logout()
+}
 
 
 }

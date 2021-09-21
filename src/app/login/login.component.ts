@@ -21,13 +21,10 @@ export class LoginComponent {
               private apiService: ApiService)
     {
     this.loginForm = new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required])
+      username: new FormControl('', [Validators.required,Validators.minLength(7),Validators.maxLength(15),Validators.pattern(/^[a-zA-Z0-9\s]+$/i)]),
+      password: new FormControl('', [Validators.required,Validators.minLength(6)])
     })
-    this.CustomerUser = {
-      "username": "",
-      "userPassword": ""
-    }
+    
   }
   onSubmit() {
     this.CustomerUser = {
@@ -38,21 +35,47 @@ export class LoginComponent {
     // let url = "http://localhost:8080/users/login"
     let payload = this.CustomerUser
 
-    this.apiService.loginApi(payload).subscribe((result => {
-      if (result != null) {
-        this.login = false;
-        this.service.customer_login(result);
-        this.router.navigate(['/dashboard'])
-      }
-      else {
-        this.login = true
-      }
-    }), error => {
-      this.login = true
-      console.log(error)
-    })
+    // this.apiService.loginApi(payload).subscribe((result => {
+    //   if (result != null) {
+    //     this.login = false;
+    //     this.service.customer_login(result);
+    //     this.router.navigate(['/dashboard'])
+    //   }
+    //   else {
+    //     this.login = true
+    //   }
+    // }), error => {
+    //   this.login = true
+    //   console.log(error)
+    //   console.log("error")
+    // })
+    // this.loginForm.reset();
+
+    let result=this.apiService.authenticate(payload).subscribe((result=>{
+     // console.log(result)
+     // console.log(sessionStorage.getItem('token'))
+      this.router.navigate(['/dashboard'])
+    }),
+        error=>{
+          this.login=true
+          console.log(error)
+        }
+    )
     this.loginForm.reset();
-  }
+   // console.log(result)
+
+    // this.apiService.loginApi(payload.username).subscribe((result=>{
+    //   if(result!=null)
+    //   {
+    //     this.service.customer_login(result)
+    //     console.log(result)
+    //   }
+    // }),err=>{
+    //   console.log("error in login ")
+    //   console.log(err);
+      
+    // })
+     }
 
   get password() {
     return this.loginForm.controls['password']

@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { HeaderComponent } from "../header/header.component";
 import { CustomerModel } from "../models/customer.model";
 
 
@@ -28,10 +27,10 @@ export class RequestService{
     }
     
 
-    customer_login(obj:any){
-        console.log(this.customer)
+    customer_login(obj:CustomerModel){
+        // console.log(this.customer)
         this.User=obj;
-        this.customer=obj;
+        this.customer=obj
         console.log(this.customer)
         this.login=true
        // this.header.changeStatus(this.login)
@@ -42,11 +41,10 @@ export class RequestService{
 
 
    
-    getApi(url:string){
-        return this.http.get(url);
-    }
-    
-    
+    logout() {
+        sessionStorage.removeItem('username')
+        this.login=false
+      }
 
 
 
